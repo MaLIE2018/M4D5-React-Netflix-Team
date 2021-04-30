@@ -1,12 +1,10 @@
-import MovieRowTitle from '../components/MovieRowTitle';
-import MovieCarousel from '../components/MovieCarousel';
-import HarryFilms from '../data/harrypotter.json';
+import MovieCarousel from "../components/MovieCarousel";
 
 const MovieRow = (props) => {
   return (
     <>
-      <MovieRowTitle />
-      <MovieCarousel movies={HarryFilms} />
+      <h3>{props.movieRowSaga.Search[0].Title.split(":"[0])}</h3>
+      <MovieCarousel carouselSaga={props.movieRowSaga} />
     </>
   );
 };

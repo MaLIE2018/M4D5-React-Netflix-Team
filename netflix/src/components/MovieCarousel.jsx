@@ -1,32 +1,44 @@
-import React, { useState } from 'react';
-import { Carousel } from 'react-bootstrap';
+import React, { useState } from "react";
+import { Carousel, Col, Row } from "react-bootstrap";
 
 function MovieCarousel(props) {
   const [index, setIndex] = useState(0);
-  console.log(props.movies);
 
   const handleSelect = (selectedIndex, e) => {
     setIndex(selectedIndex);
   };
 
-  const movies = props.movies.search;
-  // [{}{}{}]{}{}{}}{}{}] items 10
-  let chunks = [];
-  let k = 0;
-  while (k < movies.length) {
-    chunks.push(movies.slice(k, (k += 6)));
-  }
-  console.log(chunks);
-  // [[{}{}{}{}{}{}],[{}{}{}{}]] [items=6,items=4]
+  const chunkMovies = () => {
+    const movies = props.carouselSaga.Search;
+
+    let chunks = [];
+    let i = 0;
+    while (i < movies.length) {
+      chunks.push(movies.slice(i, (i += 6)));
+    }
+    return chunks;
+  };
+
   return (
     <Carousel activeIndex={index} onSelect={handleSelect}>
-      <Carousel.Item active>
-        <img src="" alt="" />
-        <img src="" alt="" />
-        <img src="" alt="" />
-        <img src="" alt="" />
-        <img src="" alt="" />
-      </Carousel.Item>
+      {chunkMovies().map((chunk) => {
+        return (
+          <Carousel.Item>
+            <Row className='flex-row'>
+              {chunk.map((movie) => (
+                <Col md={2}>
+                  <img
+                    src={movie.Poster}
+                    alt=''
+                    key={movie.imdbID}
+                    style={{ width: 150 }}
+                  />
+                </Col>
+              ))}
+            </Row>
+          </Carousel.Item>
+        );
+      })}
     </Carousel>
   );
 }
