@@ -1,9 +1,13 @@
-import logo from './logo.svg';
-import './styles/css/App.css';
+import logo from "./logo.svg";
+import "./styles/css/App.css";
+import NavbarNetflix from "./components/NavbarNetflix";
+import { Container } from "react-bootstrap";
 
 function App() {
   return (
-    <h1>Test</h1>
+    <Container fluid>
+      <NavbarNetflix />
+    </Container>
   );
 }
 
