@@ -1,11 +1,44 @@
+import {
+  Navbar,
+  Nav,
+  NavDropdown,
+  Form,
+  FormControl,
+  Button,
+} from "react-bootstrap";
+import SearchBar from "../components/SearchBar";
 
+const NavbarNetflix = () => {
+  return (
+    <Navbar bg="light" expand="lg">
+      <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
+      <Navbar.Toggle aria-controls="basic-navbar-nav" />
+      <Navbar.Collapse id="basic-navbar-nav">
+        <Nav className="mr-auto">
+          <Nav.Link href="#home">Home</Nav.Link>
+          <Nav.Link href="#link">Link</Nav.Link>
+          <NavDropdown title="Dropdown" id="basic-nav-dropdown">
+            <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
+            <NavDropdown.Item href="#action/3.2">
+              Another action
+            </NavDropdown.Item>
+            <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
+            <NavDropdown.Divider />
+            <NavDropdown.Item href="#action/3.4">
+              Separated link
+            </NavDropdown.Item>
+          </NavDropdown>
+        </Nav>
+        <SearchBar />
+      </Navbar.Collapse>
+    </Navbar>
+  );
+};
 
+export default NavbarNetflix;
 
-
-
-
-
-{/* <nav className="navbar navbar-expand-sm navbar-dark" id="navBarId">
+{
+  /* <nav className="navbar navbar-expand-sm navbar-dark" id="navBarId">
   <a className="navbar-brand" href="mainpage.html">
     <img src="./assets/netflix_logo.png" alt height="50px" width="120px" />
   </a>
@@ -69,7 +102,10 @@
           <img className="rounded" src="./assets/avatar.png" alt width="32px" />
           <span className="caret-down" />
         </a>
-        {/* Items */}
+        {/* Items */
+}
+{
+  /*
         <div className="dropdown-menu dropdown-menu-right rounded-0 customDropDown" id="dropDown" aria-labelledby="navbarDropdown">
           <div id="smalltriangle" />
           <a className="dropdown-item text-white" href="#">
@@ -81,8 +117,12 @@
           <a className="dropdown-item font-weight-bold text-white" href="#">Help Center</a>
           <a className="dropdown-item font-weight-bold text-white" href="#">Sign out from Netflix</a>
         </div>
-        {/* end Items */}
+        {/* end Items */
+}
+{
+  /*}
       </li>
     </ul>
   </div>
-</nav> */}
+</nav> */
+}
