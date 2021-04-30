@@ -1,10 +1,12 @@
-import MovieRowTitle from "../components/MovieRowTitle";
-import MovieCarousel from "../components/MovieCarousel";
+import MovieRowTitle from '../components/MovieRowTitle';
+import MovieCarousel from '../components/MovieCarousel';
+import HarryFilms from '../data/harrypotter.json';
+
 const MovieRow = (props) => {
   return (
     <>
       <MovieRowTitle />
-      <MovieCarousel />
+      <MovieCarousel movies={HarryFilms} />
     </>
   );
 };
