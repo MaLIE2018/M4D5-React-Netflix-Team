@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Carousel, Col, Row } from "react-bootstrap";
+import "../styles/css/Carousel.css";
 
 function MovieCarousel(props) {
   const [index, setIndex] = useState(0);
@@ -20,16 +21,16 @@ function MovieCarousel(props) {
   };
 
   return (
-    <Carousel activeIndex={index} onSelect={handleSelect}>
+    <Carousel activeIndex={index} onSelect={handleSelect} className="mt-3">
       {chunkMovies().map((chunk) => {
         return (
           <Carousel.Item>
-            <Row className='flex-row'>
+            <Row className="flex-row">
               {chunk.map((movie) => (
                 <Col md={2}>
                   <img
                     src={movie.Poster}
-                    alt=''
+                    alt=""
                     key={movie.imdbID}
                     style={{ width: 150 }}
                   />

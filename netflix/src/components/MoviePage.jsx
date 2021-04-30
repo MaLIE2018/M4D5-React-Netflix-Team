@@ -8,21 +8,21 @@ class MoviePage extends React.Component {
     return (
       <>
         {console.log("SAGAS", this.props.sagas)}
-        <Row className='flex-column'>
+        <Row className="flex-column mb-5">
           {this.props.sagas.length > 0 ? (
             <>
-              <Col>
+              <Col className="mb-5">
                 <MoviePageHeader />
               </Col>
               {this.props.sagas.map((tSaga) => (
-                <Col>
+                <Col className="mb-5">
                   <MovieRow movieRowSaga={tSaga} />
                 </Col>
               ))}
             </>
           ) : (
-            <Spinner animation='border' role='status'>
-              <span className='sr-only'>Loading...</span>
+            <Spinner animation="border" role="status">
+              <span className="sr-only">Loading...</span>
             </Spinner>
           )}
         </Row>
