@@ -11,3 +11,21 @@ Implement loaders, form validation and error messages throughout the app
 [EXTRA] When clicking on a movie show its Comment list
 [EXTRA] Let the user add a comment to a movie in the Comment list
 [EXTRA] Sort every AJAX response per Year (from newer to older)
+
+
+
+HarryPotter
+
+Lord of the Rings
+
+Transformers
+
+App
+componentDidUpdate(){
+  title = [HarryPotter, LOR, Terminator]
+
+  forEach(fetch(titles))
+  Promisearray.push(fetch)
+
+  promise.all(prmoisearray).then(result[{movies},{movies},{movies}])
+}
