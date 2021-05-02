@@ -101,12 +101,10 @@ class NavbarNetflix extends React.Component {
               />
             </li>
             <li className='nav-item'>
-              <a className='nav-link' href>
-                KIDS
-              </a>
+              <a className='nav-link'>KIDS</a>
             </li>
             <li className='nav-item'>
-              <a className='nav-link' href>
+              <a className='nav-link'>
                 <AlarmOutline
                   color={"#ffffff"}
                   title={"Clock"}
@@ -124,7 +122,7 @@ class NavbarNetflix extends React.Component {
                 data-toggle='dropdown'
                 aria-haspopup='true'
                 aria-expanded='false'>
-                <img className='rounded' src={avatar} alt width='32px' />
+                <img className='rounded' src={avatar} width='32px' />
                 <span className='caret-down' />
               </a>
               <div
@@ -136,12 +134,11 @@ class NavbarNetflix extends React.Component {
                   <img
                     className='mr-2'
                     src='./assets/Capture.PNG'
-                    alt
                     width='32px'
                   />
                   Max
                 </a>
-                <a className='dropdown-item text-white' href='profil.html'>
+                <a className='dropdown-item text-white' href='#'>
                   Manage Profiles
                 </a>
                 <div className='dropdown-divider' />

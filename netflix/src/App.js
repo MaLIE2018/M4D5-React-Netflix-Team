@@ -1,22 +1,28 @@
 import './styles/css/App.css';
 import NavbarNetflix from './components/NavbarNetflix';
-import { Container } from 'react-bootstrap';
+import { Container, Alert, Row,Col } from 'react-bootstrap';
 import React from 'react';
 import MoviePage from './components/MoviePage';
 import NetflixFooter from './components/NetflixFooter';
 import SearchResults from './components/SearchResults';
+import Comments from './components/Comments';
 
 class App extends React.Component {
   state = {
     searchArr: ["Harry Potter", "Lord of the Rings", "Terminator" ],
     data: [],
     query: "",
-    isError: false,
-    error: {
-      errMes: '',
-      errCod: '',
+    error:{
+      mes: "",
+      isError: false,
     },
+    showComments:false,
+    selectedMovie: {}
   };
+
+  handleShowCommentsClick = (showComments, selectedMovie) => {
+    this.setState({showComments: showComments, selectedMovie: selectedMovie})
+  }
 
   handleSearchTextChange = (searchText) => {
       this.setState({query: searchText, data: searchText==="" ? this.componentWillMount():this.getSearchResults(searchText)});
@@ -31,17 +37,17 @@ class App extends React.Component {
             header:{
               ContentType: 'application/json',}}
              
-              )   
+              )
               return await res.json();       
         }))})
     } catch (err) {
-        this.setState({
-          isError:true, 
-          error:{...this.state.error,
-            errorMes:err.statusText, 
-            errCod:err.status}})
-    } 
+      this.setState({
+        error:{
+          mes: err.message, isError:true}})
+    }
   }
+
+ 
 
   getSearchResults = async(query) => {
     try {
@@ -52,27 +58,31 @@ class App extends React.Component {
     this.setState({data: await res.json()})
     } catch (err) {
       this.setState({
-        isError:true, 
-        error:{...this.state.error,
-          errorMes:err.statusText, 
-          errCod:err.status}})
+        error:{
+          mes: err.mes, isError:true}})
     }
-    
   }
-
-
 
   render() {
     return (
       <>
         <Container fluid>
-          {/* {console.log(this.state.data, this.state.query)} */}
           <NavbarNetflix onSearchTextChange={this.handleSearchTextChange} searchText={this.state.searchText}/>
-          {this.state.data.length > 1?
-          <MoviePage sagas={this.state.data} moviePageHeadline={"Movies"} movieRowTitles={this.state.searchArr}/>
+          {this.state.error.isError
+          ?
+          <Row>
+            <Col>
+              <Alert variant="danger" className="mx-4">{this.state.error.mes}</Alert>
+            </Col>
+          </Row>
           :
-          <SearchResults results={this.state.data} moviePageHeadline={"Search Results"}/>}
+          this.state.data.length > 1
+          ?
+          <MoviePage sagas={this.state.data} moviePageHeadline={"Movies"} movieRowTitles={this.state.searchArr} onShowCommentsClick={this.handleShowCommentsClick}/>
+          :
+          <SearchResults results={this.state.data} moviePageHeadline={"Search Results"} onShowCommentsClick={this.handleShowCommentsClick}/>}
         </Container>
+          {this.state.showComments?<Comments selectedMovie={this.state.selectedMovie} onShowCommentsClick={this.handleShowCommentsClick}/>:<></>}
         <NetflixFooter />
       </>
 );

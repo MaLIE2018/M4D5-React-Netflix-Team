@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { Carousel, Col, Row } from "react-bootstrap";
 import "../styles/css/Carousel.css";
-
+import MovieCard from "../components/MovieCard";
+import { sortByYear } from "../lib/helper";
 function MovieCarousel(props) {
   const [index, setIndex] = useState(0);
 
@@ -10,7 +11,7 @@ function MovieCarousel(props) {
   };
 
   const chunkMovies = () => {
-    const movies = props.carouselSaga.Search;
+    const movies = sortByYear(props.carouselSaga.Search);
 
     let chunks = [];
     let i = 0;
@@ -27,8 +28,12 @@ function MovieCarousel(props) {
           <Carousel.Item>
             <Row className='flex-row'>
               {chunk.map((movie) => (
-                <Col md={2} key={movie.imdbID}>
-                  <img src={movie.Poster} alt='' style={{ width: 150 }} />
+                <Col md={2}>
+                  <MovieCard
+                    movie={movie}
+                    key={movie.imdbID}
+                    onShowCommentsClick={props.onShowCommentsClick}
+                  />
                 </Col>
               ))}
             </Row>
@@ -38,7 +43,5 @@ function MovieCarousel(props) {
     </Carousel>
   );
 }
-
-// render(<MovieCarousel />);
 
 export default MovieCarousel;
