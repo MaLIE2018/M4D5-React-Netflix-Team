@@ -5,3 +5,8 @@
 .col {
   cursor: pointer;
 }
+
+.carousel-control-prev,
+.carousel-control-next {
+  height: 200px;
+}

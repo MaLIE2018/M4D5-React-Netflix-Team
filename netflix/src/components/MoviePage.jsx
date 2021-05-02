@@ -16,11 +16,12 @@ class MoviePage extends React.Component {
                 />
               </Col>
               {this.props.sagas.map((saga, i) => (
-                <Col className='mb-5'>
+                <Col className='mb-5' key={i}>
                   <MovieRow
                     movieRowSaga={saga}
                     key={i}
                     movieRowTitle={this.props.movieRowTitles[i]}
+                    onShowCommentsClick={this.props.onShowCommentsClick}
                   />
                 </Col>
               ))}

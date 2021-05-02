@@ -1,6 +1,7 @@
 import MoviePageHeader from "../components/MoviePageHeader";
 import { Row, Col, Spinner } from "react-bootstrap";
-
+import MovieCard from "../components/MovieCard";
+import { sortByYear } from "../lib/helper";
 const SearchResults = (props) => {
   return (
     <>
@@ -13,21 +14,27 @@ const SearchResults = (props) => {
           props.results.Search.length > 0 ? (
             <Col className='mb-5'>
               <Row>
-                {props.results.Search.map((movie) => {
+                {sortByYear(props.results.Search).map((movie) => {
                   return (
-                    <Col xs={12} md={2} key={movie.imdbID} className='mb-5'>
-                      <img src={movie.Poster} alt='' style={{ width: 150 }} />
+                    <Col xs={12} md={2} className='mb-4'>
+                      <MovieCard
+                        movie={movie}
+                        key={movie.imdbID}
+                        onShowCommentsClick={props.onShowCommentsClick}
+                      />
                     </Col>
                   );
                 })}
               </Row>
             </Col>
-          ) : (
+          ) : props.results.Error === undefined ? (
             <Col className='mb-5'>
               <Spinner animation='border' role='status'>
                 <span className='sr-only'>Loading...</span>
               </Spinner>
             </Col>
+          ) : (
+            <Col className='mb-5'>{props.results.Error}</Col>
           )}
         </>
       </Row>
