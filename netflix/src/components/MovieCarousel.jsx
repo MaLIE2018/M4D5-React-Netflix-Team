@@ -21,19 +21,14 @@ function MovieCarousel(props) {
   };
 
   return (
-    <Carousel activeIndex={index} onSelect={handleSelect} className="mt-3">
+    <Carousel activeIndex={index} onSelect={handleSelect} className='mt-3'>
       {chunkMovies().map((chunk) => {
         return (
           <Carousel.Item>
-            <Row className="flex-row">
+            <Row className='flex-row'>
               {chunk.map((movie) => (
-                <Col md={2}>
-                  <img
-                    src={movie.Poster}
-                    alt=""
-                    key={movie.imdbID}
-                    style={{ width: 150 }}
-                  />
+                <Col md={2} key={movie.imdbID}>
+                  <img src={movie.Poster} alt='' style={{ width: 150 }} />
                 </Col>
               ))}
             </Row>

@@ -7,23 +7,30 @@ class MoviePage extends React.Component {
   render() {
     return (
       <>
-        {console.log("SAGAS", this.props.sagas)}
-        <Row className="flex-column mb-5">
+        <Row className='flex-column mb-5 ml-2'>
           {this.props.sagas.length > 0 ? (
             <>
-              <Col className="mb-5">
-                <MoviePageHeader />
+              <Col className='mb-5'>
+                <MoviePageHeader
+                  moviePageHeadline={this.props.moviePageHeadline}
+                />
               </Col>
-              {this.props.sagas.map((tSaga) => (
-                <Col className="mb-5">
-                  <MovieRow movieRowSaga={tSaga} />
+              {this.props.sagas.map((saga, i) => (
+                <Col className='mb-5'>
+                  <MovieRow
+                    movieRowSaga={saga}
+                    key={i}
+                    movieRowTitle={this.props.movieRowTitles[i]}
+                  />
                 </Col>
               ))}
             </>
           ) : (
-            <Spinner animation="border" role="status">
-              <span className="sr-only">Loading...</span>
-            </Spinner>
+            <Col className='mb-5'>
+              <Spinner animation='border' role='status'>
+                <span className='sr-only'>Loading...</span>
+              </Spinner>
+            </Col>
           )}
         </Row>
       </>
