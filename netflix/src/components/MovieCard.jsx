@@ -1,4 +1,4 @@
-import { Card } from "react-bootstrap";
+import { Card, Spinner } from "react-bootstrap";
 import React from "react";
 
 class MovieCard extends React.Component {
@@ -7,7 +7,7 @@ class MovieCard extends React.Component {
   };
 
   render() {
-    return (
+    return !this.props.isLoading ? (
       <Card style={{ border: "none", backgroundColor: "transparent" }}>
         <Card.Img
           onClick={this.handleClickShowComments}
@@ -16,6 +16,10 @@ class MovieCard extends React.Component {
           style={{ width: 150 }}
         />
       </Card>
+    ) : (
+      <Spinner animation='border' variant='light' role='status'>
+        <span className='sr-only'>Loading...</span>
+      </Spinner>
     );
   }
 }

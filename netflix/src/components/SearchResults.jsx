@@ -18,6 +18,7 @@ const SearchResults = (props) => {
                   return (
                     <Col xs={12} md={2} className='mb-4'>
                       <MovieCard
+                        isLoading={props.isLoading}
                         movie={movie}
                         key={movie.imdbID}
                         onShowCommentsClick={props.onShowCommentsClick}

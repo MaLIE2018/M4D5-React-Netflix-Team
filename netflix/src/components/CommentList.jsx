@@ -36,7 +36,6 @@ class CommentList extends Component {
         />
         <ListGroup>
           {comments.map((comment) => {
-            console.log(comment);
             return (
               <ListGroup.Item key={comment._id} className='bg-dark'>
                 Author: {comment.author} Comment: {comment.comment} Rating:{" "}

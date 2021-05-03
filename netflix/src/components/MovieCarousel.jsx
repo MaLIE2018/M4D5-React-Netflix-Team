@@ -30,6 +30,7 @@ function MovieCarousel(props) {
               {chunk.map((movie) => (
                 <Col md={2}>
                   <MovieCard
+                    isLoading={props.isLoading}
                     movie={movie}
                     key={movie.imdbID}
                     onShowCommentsClick={props.onShowCommentsClick}
