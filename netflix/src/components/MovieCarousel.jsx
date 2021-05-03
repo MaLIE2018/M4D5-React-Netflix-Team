@@ -3,6 +3,7 @@ import { Carousel, Col, Row } from "react-bootstrap";
 import "../styles/css/Carousel.css";
 import MovieCard from "../components/MovieCard";
 import { sortByYear } from "../lib/helper";
+
 function MovieCarousel(props) {
   const [index, setIndex] = useState(0);
 

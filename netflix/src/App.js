@@ -5,100 +5,70 @@ import { Container, Alert, Row, Col } from "react-bootstrap";
 import React from "react";
 import MoviePage from "./components/MoviePage";
 import NetflixFooter from "./components/NetflixFooter";
-import SearchResults from "./components/SearchResults";
 import Comments from "./components/Comments";
 
 class App extends React.Component {
   state = {
-    searchArr: ["Harry Potter", "Lord of the Rings", "Terminator"],
+    queryArr: ["Harry Potter", "Lord of the Rings", "Terminator"],
+    history:[],
     data: [],
-    query: "",
+    searchText: "",
     error: {
       mes: "",
       isError: false,
     },
     showComments: false,
-    selectedMovie: {},
-    isLoading: true,
+    selectedMovie: {}
+    
   };
 
   handleShowCommentsClick = (showComments, selectedMovie) => {
     this.setState({ showComments: showComments, selectedMovie: selectedMovie });
   };
-
+  // Search field 
   handleSearchTextChange = (searchText) => {
     this.setState({
-      query: searchText});
+      searchText: searchText,
+      queryArr: searchText.length>=3?[searchText]:["Harry Potter", "Lord of the Rings", "Terminator"]
+    });
   };
 
-  async componentDidUpdate(prevProps,prevState) {
-      if (this.state.query.length ===0 && prevState.query.length !== 0){
-        this.componentDidMount()
-      }
-      if(this.state.query.length > 0 && prevState.query !== this.state.query){
-        console.log("CDM")
-        try {
-          this.setState({isLoading:true})
+  fetchData = async () => {
+    this.setState({data:await Promise.all(
+      this.state.queryArr.map(async(query) => {
           const res = await fetch(
-            `http://www.omdbapi.com/?s=${this.state.query.replace(
-              " ",
-              "%20"
-            )}}&apikey=5660ed2b`,
+            `http://www.omdbapi.com/?s=${query}&apikey=5660ed2b`,
             {
               method: "GET",
               header: {
                 ContentType: "application/json",
               },
             }
-          );
-          this.setState({ data: await res.json(), isLoading:false });
-        } catch (err) {
+            );
+            return await res.json();
+        })
+        ).catch ((err) =>{
           this.setState({
             error: {
-              mes: err.mes,
+              mes: err.message,
               isError: true,
             },
           });
-        }
+        })
+      })
+  }
+
+  componentDidUpdate(prevProps,prevState) {
+      if(this.state.searchText.length === 0  && prevState.searchText.length !== 0) this.fetchData()
+      if(this.state.searchText.length > 0 && prevState.searchText !== this.state.searchText){
+          this.fetchData() 
       }
   }
-
-  async componentDidMount() {
-    console.log("CDU")
-    try {
-      this.setState({isLoading:true})
-      console.log(this.state.isLoading)
-      this.setState({
-        data: await Promise.all(
-          this.state.searchArr.map(async (query) => {
-            const res = await fetch(
-              `http://www.omdbapi.com/?s=${query.replace(
-                " ",
-                "%20"
-              )}&apikey=5660ed2b`,
-              {
-                method: "GET",
-                header: {
-                  ContentType: "application/json",
-                },
-              }
-              );
-            this.setState({isLoading:false})
-            return await res.json();
-          })
-          ),
-      });
-    } catch (err) {
-      this.setState({
-        error: {
-          mes: err.message,
-          isError: true,
-        },
-      });
-    }
+  componentDidMount() {
+    this.fetchData()
   }
 
-  render() {
+render() {
     return (
       <>
         <Container fluid>
@@ -114,22 +84,14 @@ class App extends React.Component {
                 </Alert>
               </Col>
             </Row>
-          ) : this.state.data.length > 0 ? (
+          ) :
             <MoviePage
-              isLoading = {this.state.isLoading}
-              sagas={this.state.data}
-              moviePageHeadline={"Movies"}
-              movieRowTitles={this.state.searchArr}
+              data={this.state.data}
+              searchText={this.state.searchText}
+              movieRowTitles={this.state.queryArr}
               onShowCommentsClick={this.handleShowCommentsClick}
             />
-          ) : (
-            <SearchResults
-              isLoading = {this.state.isLoading}
-              results={this.state.data}
-              moviePageHeadline={"Search Results"}
-              onShowCommentsClick={this.handleShowCommentsClick}
-            />
-          )}
+          }
         </Container>
         {this.state.showComments ? (
           <Comments

@@ -1,7 +1,8 @@
 import MoviePageHeader from "../components/MoviePageHeader";
-import { Row, Col, Spinner } from "react-bootstrap";
+import { Row, Col } from "react-bootstrap";
 import MovieCard from "../components/MovieCard";
 import { sortByYear } from "../lib/helper";
+
 const SearchResults = (props) => {
   return (
     <>
@@ -10,33 +11,22 @@ const SearchResults = (props) => {
           <Col className='mb-5'>
             <MoviePageHeader moviePageHeadline={props.moviePageHeadline} />
           </Col>
-          {props.results.Search !== undefined &&
-          props.results.Search.length > 0 ? (
-            <Col className='mb-5'>
-              <Row>
-                {sortByYear(props.results.Search).map((movie) => {
-                  return (
-                    <Col xs={12} md={2} className='mb-4'>
-                      <MovieCard
-                        isLoading={props.isLoading}
-                        movie={movie}
-                        key={movie.imdbID}
-                        onShowCommentsClick={props.onShowCommentsClick}
-                      />
-                    </Col>
-                  );
-                })}
-              </Row>
-            </Col>
-          ) : props.results.Error === undefined ? (
-            <Col className='mb-5'>
-              <Spinner animation='border' role='status'>
-                <span className='sr-only'>Loading...</span>
-              </Spinner>
-            </Col>
-          ) : (
-            <Col className='mb-5'>{props.results.Error}</Col>
-          )}
+          <Col className='mb-5'>
+            <Row>
+              {sortByYear(props.data[0].Search).map((movie) => {
+                return (
+                  <Col xs={12} md={2} className='mb-4'>
+                    <MovieCard
+                      isLoading={props.isLoading}
+                      movie={movie}
+                      key={movie.imdbID}
+                      onShowCommentsClick={props.onShowCommentsClick}
+                    />
+                  </Col>
+                );
+              })}
+            </Row>
+          </Col>
         </>
       </Row>
     </>
