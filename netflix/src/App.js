@@ -1,3 +1,4 @@
+import "bootstrap/dist/css/bootstrap.min.css";
 import './styles/css/App.css';
 import NavbarNetflix from './components/NavbarNetflix';
 import { Container, Alert, Row,Col } from 'react-bootstrap';

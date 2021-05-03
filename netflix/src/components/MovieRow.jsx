@@ -1,5 +1,5 @@
 import MovieCarousel from "../components/MovieCarousel";
-import { sortByYear } from "../lib/helper";
+
 const MovieRow = (props) => {
   return (
     <>
