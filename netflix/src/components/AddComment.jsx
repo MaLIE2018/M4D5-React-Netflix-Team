@@ -12,7 +12,6 @@ class AddComment extends Component {
 
   manipulateData = async (event) => {
     event.preventDefault();
-    console.log(JSON.stringify(this.state.newComment));
     try {
       let response = await fetch(
         `https://striveschool-api.herokuapp.com/api/comments/`,

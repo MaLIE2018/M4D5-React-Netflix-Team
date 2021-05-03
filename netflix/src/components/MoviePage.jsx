@@ -1,8 +1,7 @@
 import React from "react";
 import { Row, Col, Spinner } from "react-bootstrap";
-import MovieRow from "../components/MovieRow";
 import MoviePageHeader from "../components/MoviePageHeader";
-
+import MovieCarousel from "../components/MovieCarousel";
 class MoviePage extends React.Component {
   render() {
     return (
@@ -17,10 +16,10 @@ class MoviePage extends React.Component {
               </Col>
               {this.props.sagas.map((saga, i) => (
                 <Col className='mb-5' key={i}>
-                  <MovieRow
-                    movieRowSaga={saga}
-                    key={i}
-                    movieRowTitle={this.props.movieRowTitles[i]}
+                  <h3 className='pt-2'>{this.props.movieRowTitles[i]}</h3>
+                  <MovieCarousel
+                    isLoading={this.props.isLoading}
+                    carouselSaga={saga}
                     onShowCommentsClick={this.props.onShowCommentsClick}
                   />
                 </Col>

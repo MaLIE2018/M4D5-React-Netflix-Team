@@ -22,7 +22,6 @@ class Comments extends Component {
   };
 
   componentDidMount = async () => {
-    console.log("did mount");
     try {
       let response = await fetch(
         `https://striveschool-api.herokuapp.com/api/comments/${this.props.selectedMovie.imdbID}`,
@@ -35,7 +34,7 @@ class Comments extends Component {
       );
       if (response.ok) {
         let data = await response.json();
-        console.log(data);
+
         this.setState((state) => {
           return { comments: data, isLoading: false, newComment: false };
         });
