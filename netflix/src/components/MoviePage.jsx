@@ -42,7 +42,6 @@ class MoviePage extends React.Component {
                       <Col className='mb-5' key={i}>
                         <h3 className='pt-2'>{this.props.movieRowTitles[i]}</h3>
                         <MovieCarousel
-                          isLoading={this.props.isLoading}
                           carouselSaga={saga}
                           onShowCommentsClick={this.props.onShowCommentsClick}
                         />
