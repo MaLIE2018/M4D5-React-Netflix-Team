@@ -1,4 +1,4 @@
-import { Form, Row, Col, Button } from "react-bootstrap";
+import { Form, Row, Col, Button, Alert } from "react-bootstrap";
 import { Component } from "react";
 
 class AddComment extends Component {
@@ -28,7 +28,6 @@ class AddComment extends Component {
       if (response.ok) {
         this.setState({ comment: "" });
         this.handleNewCommentSubmit();
-        alert("Your Comment got saved!");
       }
     } catch (error) {
       alert("Something went wrong");
@@ -53,6 +52,9 @@ class AddComment extends Component {
     return (
       <>
         <h6 className='mt-3'>Add Comments</h6>
+        {this.props.newComment ? (
+          <Alert variant='success'>Your Comment got saved!</Alert>
+        ) : null}
         <Form onSubmit={this.manipulateData}>
           <Row>
             <Col>

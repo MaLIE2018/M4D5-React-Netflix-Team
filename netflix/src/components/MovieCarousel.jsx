@@ -6,7 +6,11 @@ import { sortByYear } from "../lib/helper";
 
 function MovieCarousel(props) {
   const [index, setIndex] = useState(0);
+  const [failedImages, addFailedImage] = useState([]);
 
+  const handleFailedImage = (failedImage) => {
+    addFailedImage(() => [...failedImages, failedImage]);
+  };
   const handleSelect = (selectedIndex, e) => {
     setIndex(selectedIndex);
   };
@@ -31,9 +35,10 @@ function MovieCarousel(props) {
               {chunk.map((movie) => (
                 <Col md={2}>
                   <MovieCard
-                    isLoading={props.isLoading}
+                    onFailedImage={handleFailedImage}
                     movie={movie}
                     key={movie.imdbID}
+                    keyValue={movie.imdbID}
                     onShowCommentsClick={props.onShowCommentsClick}
                   />
                 </Col>

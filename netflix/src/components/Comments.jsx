@@ -75,6 +75,7 @@ class Comments extends Component {
             <Row className=''>
               <Col>
                 <AddComment
+                  newComment={this.state.newComment}
                   imdbid={this.props.selectedMovie.imdbID}
                   onNewCommentSubmit={this.handleNewCommentSubmit}
                   style={{ zIndex: 1 }}
