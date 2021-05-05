@@ -55,13 +55,6 @@ class Comments extends Component {
     return (
       <div className='commentArea overflow-auto my-5'>
         <Row className='m-3'>
-          <Col sm={5} md={2} lg={2}>
-            <img
-              src={this.props.selectedMovie.Poster}
-              alt=''
-              className='img-fluid'
-            />
-          </Col>
           <Col sm={7} md={10} lg={10}>
             <h4>{this.props.selectedMovie.title}</h4>
             {this.state.isLoading ? (
@@ -80,11 +73,6 @@ class Comments extends Component {
                   onNewCommentSubmit={this.handleNewCommentSubmit}
                   style={{ zIndex: 1 }}
                 />
-                <Button
-                  variant='outline-secondary'
-                  onClick={() => this.props.onShowCommentsClick(false)}>
-                  Go Back
-                </Button>
               </Col>
             </Row>
           </Col>

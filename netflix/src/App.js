@@ -5,7 +5,8 @@ import { Container, Alert, Row, Col } from "react-bootstrap";
 import React from "react";
 import MoviePage from "./components/MoviePage";
 import NetflixFooter from "./components/NetflixFooter";
-import Comments from "./components/Comments";
+import Details from "./components/Details";
+import {Route} from "react-router-dom"
 
 class App extends React.Component {
   state = {
@@ -85,22 +86,21 @@ render() {
               </Col>
             </Row>
           ) :
-            <MoviePage
+            <Route render={(routerProps) =>  <MoviePage
               data={this.state.data}
               searchText={this.state.searchText}
               movieRowTitles={this.state.queryArr}
               onShowCommentsClick={this.handleShowCommentsClick}
-            />
+              {...routerProps}
+            />}  path="/Movies"/>
+          
           }
         </Container>
-        {this.state.showComments ? (
-          <Comments
+        <Route render={(routerProps) => <Details
             selectedMovie={this.state.selectedMovie}
             onShowCommentsClick={this.handleShowCommentsClick}
-          />
-        ) : (
-          <></>
-        )}
+            {...routerProps}/>} path="/Details/:id"/>
+        
         <NetflixFooter />
       </>
     );
@@ -108,3 +108,4 @@ render() {
 }
 
 export default App;
+;
