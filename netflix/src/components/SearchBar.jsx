@@ -1,6 +1,6 @@
 import { SearchOutline } from "react-ionicons";
 import "../styles/css/SearchBar.css";
-import { FormControl } from "react-bootstrap";
+import { FormControl, Form } from "react-bootstrap";
 import React from "react";
 class SearchBar extends React.Component {
   expandSearch = (e) => {
@@ -22,22 +22,18 @@ class SearchBar extends React.Component {
 
   render() {
     return (
-      <div
+      <Form
         className='d-flex flex-row input-hidden align-items-center'
         id='searchContainer'
-        onClick={(e) => this.expandSearch(e)}>
-        <a
-          className='btn d-flex align-items-center'
-          href='#searchfield'
-          role='button'
-          id='lensInSearchBox'>
-          <SearchOutline
-            color={"#ffffff"}
-            title={"Search"}
-            height='30px'
-            width='30px'
-          />
-        </a>
+        onClick={(e) => this.expandSearch(e)}
+        onSubmit={(e) => e.preventDefault()}>
+        <SearchOutline
+          id='lensInSearchBox'
+          color={"#ffffff"}
+          title={"Search"}
+          height='30px'
+          width='30px'
+        />
         <FormControl
           type='text'
           placeholder='Title, People, Genres'
@@ -46,7 +42,7 @@ class SearchBar extends React.Component {
           value={this.props.searchText}
           onChange={(e) => this.handleSearchTextChange(e)}
         />
-      </div>
+      </Form>
     );
   }
 }

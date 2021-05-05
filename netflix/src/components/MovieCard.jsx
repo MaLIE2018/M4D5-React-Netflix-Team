@@ -1,5 +1,6 @@
 import { Card, Spinner } from "react-bootstrap";
 import React from "react";
+import { withRouter } from "react-router";
 
 class MovieCard extends React.Component {
   state = {
@@ -19,7 +20,9 @@ class MovieCard extends React.Component {
       <>
         <Card style={{ border: "none", backgroundColor: "transparent" }}>
           <Card.Img
-            onClick={this.handleClickShowComments}
+            onClick={() =>
+              this.props.history.push(`/Details/${this.props.keyValue}`)
+            }
             variant='top'
             src={this.props.movie.Poster}
             style={{ width: 150 }}
@@ -37,4 +40,4 @@ class MovieCard extends React.Component {
   }
 }
 
-export default MovieCard;
+export default withRouter(MovieCard);

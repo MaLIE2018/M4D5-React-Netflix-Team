@@ -13,7 +13,6 @@ const SearchResults = (props) => {
 
   return (
     <>
-      {console.log("SearchResults")}
       <Row className='flex-column mb-5 ml-2'>
         <>
           <Col className='mb-5'>
