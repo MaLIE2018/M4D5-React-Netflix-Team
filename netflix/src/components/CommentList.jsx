@@ -29,22 +29,30 @@ class CommentList extends Component {
       }
     }
     return this.props.comments.length !== 0 ? (
-      <div className='bg-dark' style={{ height: "30vh", overflow: "scroll" }}>
-        <SearchBar
-          currentText={this.state.filterText}
-          onFilterTextChange={this.handleFilterTextChange}
-        />
-        <ListGroup>
-          {comments.map((comment) => {
-            return (
-              <ListGroup.Item key={comment._id} className='bg-dark'>
-                Author: {comment.author} Comment: {comment.comment} Rating:{" "}
-                {comment.rate}
-              </ListGroup.Item>
-            );
-          })}
-        </ListGroup>
-      </div>
+      <>
+        <h2>Comments</h2>
+        <div
+          style={{
+            height: "30vh",
+            overflowY: "auto",
+            backgroundColor: "black",
+          }}>
+          <SearchBar
+            currentText={this.state.filterText}
+            onFilterTextChange={this.handleFilterTextChange}
+          />
+          <ListGroup>
+            {comments.map((comment) => {
+              return (
+                <ListGroup.Item key={comment._id} className='bg-dark'>
+                  Author: {comment.author} Comment: {comment.comment} Rating:{" "}
+                  {comment.rate}
+                </ListGroup.Item>
+              );
+            })}
+          </ListGroup>
+        </div>
+      </>
     ) : (
       <h6>No Comments, add one!</h6>
     );
