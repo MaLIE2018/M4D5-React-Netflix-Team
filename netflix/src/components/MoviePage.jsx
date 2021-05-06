@@ -24,15 +24,7 @@ class MoviePage extends React.Component {
               );
             case this.props.data.length > 0 &&
               this.props.data[0].Response === "True":
-              return this.props.data.length === 1 ? (
-                <>
-                  <SearchResults
-                    data={this.props.data}
-                    moviePageHeadline={"Search Results"}
-                    onShowCommentsClick={this.props.onShowCommentsClick}
-                  />
-                </>
-              ) : (
+              return (
                 <Row className='flex-column mb-5 ml-2'>
                   <>
                     <Col className='mb-5'>
@@ -41,10 +33,7 @@ class MoviePage extends React.Component {
                     {this.props.data.map((saga, i) => (
                       <Col className='mb-5' key={i}>
                         <h3 className='pt-2'>{this.props.movieRowTitles[i]}</h3>
-                        <MovieCarousel
-                          carouselSaga={saga}
-                          onShowCommentsClick={this.props.onShowCommentsClick}
-                        />
+                        <MovieCarousel carouselSaga={saga} />
                       </Col>
                     ))}
                   </>

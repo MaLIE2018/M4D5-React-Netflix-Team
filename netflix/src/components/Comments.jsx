@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import AddComment from "./AddComment";
 import CommentList from "./CommentList";
 import "../styles/css/Comments.css";
-import { Button, Row, Col, Spinner } from "react-bootstrap";
+import { Row, Col, Spinner } from "react-bootstrap";
 
 class Comments extends Component {
   state = {
@@ -53,7 +53,7 @@ class Comments extends Component {
       </Spinner>
     );
     return (
-      <div className='commentArea overflow-auto my-5'>
+      <div className='commentArea'>
         <Row className='m-3'>
           <Col sm={7} md={10} lg={10}>
             <h4>{this.props.selectedMovie.title}</h4>

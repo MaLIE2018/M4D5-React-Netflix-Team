@@ -1,7 +1,7 @@
 const MoviePageHeader = (props) => {
   return (
     <>
-      <h1>{props.moviePageHeadline}</h1>
+      <h1 className='mt-5'>{props.moviePageHeadline}</h1>
     </>
   );
 };

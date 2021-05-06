@@ -59,25 +59,27 @@ class AddComment extends Component {
           <Row>
             <Col>
               <Form.Group controlId='comment'>
-                <Form.Label>Your comment</Form.Label>
+                <Form.Label className='sr-only'>Your comment</Form.Label>
                 <Form.Control
                   as='textarea'
-                  rows={3}
+                  rows={1}
                   value={this.state.comment}
                   onChange={this.handleChange}
                   required
                   className='bg-dark text-white'
+                  placeholder='Your comment'
                 />
               </Form.Group>
             </Col>
             <Col>
-              <Form.Group controlId='rate'>
-                <Form.Label>Rating</Form.Label>
+              <Form.Group controlId='rate' className=''>
+                <Form.Label className='sr-only'>Rating</Form.Label>
                 <Form.Control
                   as='select'
                   onChange={this.handleChange}
                   required
                   className='bg-dark text-white'>
+                  <option selected>Select your Rating</option>
                   <option>1</option>
                   <option>2</option>
                   <option>3</option>

@@ -39,7 +39,6 @@ function MovieCarousel(props) {
                     movie={movie}
                     key={movie.imdbID}
                     keyValue={movie.imdbID}
-                    onShowCommentsClick={props.onShowCommentsClick}
                   />
                 </Col>
               ))}
