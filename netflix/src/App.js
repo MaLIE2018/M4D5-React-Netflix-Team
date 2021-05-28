@@ -11,7 +11,7 @@ import SearchResults from './components/SearchResults';
 import Registration from "./components/Registration";
 import WelcomePage from "./components/WelcomePage"
 import ebconfig from './ebconfig';
-import { EasybaseProvider, useEasybase } from "easybase-react"
+import { EasybaseProvider } from "easybase-react"
 class App extends React.Component {
   state = {
     queryArr: ["Harry Potter", "Lord of the Rings", "Terminator"],
@@ -109,7 +109,7 @@ render() {
             selectedMovie={this.state.selectedMovie}
             {...routerProps}/>} path="/Details/:id"/>
             <Route render={(routerProps) => <Registration
-            {...routerProps}/>} path="/Register"/>
+            {...routerProps}/>} exact path="/Register"/>
              <Route render={(routerProps) => <WelcomePage
             {...routerProps}/>} path="/Register/:id"/>
           </>

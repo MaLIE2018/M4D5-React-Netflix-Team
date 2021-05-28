@@ -2,7 +2,6 @@ import React from "react";
 import { Row, Col, Spinner } from "react-bootstrap";
 import MoviePageHeader from "../components/MoviePageHeader";
 import MovieCarousel from "../components/MovieCarousel";
-import SearchResults from "../components/SearchResults";
 
 class MoviePage extends React.Component {
   render() {
